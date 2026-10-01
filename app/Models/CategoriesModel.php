@@ -15,8 +15,9 @@ class CategoriesModel
 
         return $query->fetchAll();
     }
+
     /* Получаем последние три материала определенных категорий */
-    public function getCategories(int $id): array
+    public function getLastArticles(int $id): array
     {
         $data = "SELECT a.name AS article_name, a.alias AS article_alias, a.description, a.image, a.publish_date, c.name AS category_name ,c.alias AS category_alias 
         FROM articles AS a INNER JOIN categories AS c ON a.category_id = c.id 

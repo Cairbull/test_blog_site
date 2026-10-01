@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers;
 
 use App\Views\View;
@@ -19,9 +18,9 @@ class HomeController
         $this->view->render($home, [
             'title' => 'Главная',
             'menu' => $this->categories->getItemsMenu(),
-            'categorySport' => $this->categories->getCategories(1),
-            'categoryAuto' => $this->categories->getCategories(2),
-            'categoryMusic' => $this->categories->getCategories(3),
+            'categorySport' => $this->categories->getLastArticles(1),
+            'categoryAuto' => $this->categories->getLastArticles(2),
+            'categoryMusic' => $this->categories->getLastArticles(3),
         ]);
     }
 }

@@ -7,7 +7,9 @@ use Smarty\Smarty;
 use Dotenv\Dotenv;
 
 use App\Controllers\HomeController;
+use App\Controllers\CategoryController;
 use App\Models\CategoriesModel;
+use App\Models\CategoryModel;
 use App\Views\View;
 
 class Bootstrap
@@ -18,12 +20,25 @@ class Bootstrap
         $db = $this->createDatabase();
         $smarty = $this->createSmarty();
         $categories = new CategoriesModel($db);
+        $category = new CategoryModel($db);
         $view = new View($smarty);
-        $controller = new HomeController(
+        $homeController = new HomeController(
             $view,
             $categories
         );
-        $controller->index();
+
+        $categoryController = new CategoryController(
+            $view,
+            $category,
+            $categories
+        );
+
+        $router = new Router(
+            $homeController,
+            $categoryController
+        );
+
+        $router->dispatch();
     }
 
     private function loadEnvironment(): void
@@ -57,9 +72,9 @@ class Bootstrap
     private function createSmarty(): Smarty
     {
         $smarty = new Smarty();
-        $templateDir = dirname(__DIR__).'/smarty/templates';
-        $compileDir = dirname(__DIR__).'/storage/smarty/templates_c';
-        $cacheDir = dirname(__DIR__).'/storage/smarty/cache';
+        $templateDir = dirname(__DIR__) . '/smarty/templates';
+        $compileDir = dirname(__DIR__) . '/storage/smarty/templates_c';
+        $cacheDir = dirname(__DIR__) . '/storage/smarty/cache';
 
         $smarty->setTemplateDir($templateDir);
         $smarty->setCompileDir($compileDir);
