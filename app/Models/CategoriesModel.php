@@ -23,7 +23,7 @@ class CategoriesModel
         FROM articles AS a INNER JOIN categories AS c ON a.category_id = c.id 
         WHERE a.category_id = :category_id
         ORDER BY a.publish_date DESC
-        LIMIT 9";
+        LIMIT 3";
 
         $query = $this->db->prepare($data);
         $query->execute([

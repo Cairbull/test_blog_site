@@ -207,7 +207,8 @@ main {
   padding: 40px 0;
 }
 
-.main_content__container,.category_content__container {
+.main_content__container,
+.category_content__container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 30px 19px;
@@ -218,7 +219,8 @@ main {
 }
 
 /* Заголовок категории */
-.main_content__header_class, .category_content__header_class {
+.main_content__header_class,
+.category_content__header_class {
   position: relative;
   margin: 63px 0 0;
   font-size: 28px;
@@ -231,7 +233,8 @@ main {
 }
 
 /* Карточка */
-.main_content__block_article, .category_content__block_article {
+.main_content__block_article,
+.category_content__block_article {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -245,14 +248,16 @@ main {
     border-color 0.2s ease;
 }
 
-.main_content__block_article, .category_content__block_article:hover {
+.main_content__block_article,
+.category_content__block_article:hover {
   transform: translateY(-4px);
   border-color: #d8d8d8;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 /* Изображение */
-.main_content__intro_image, .main_content__intro_image {
+.main_content__intro_image,
+.main_content__intro_image {
   display: block;
   width: 100%;
   height: 210px;
@@ -260,35 +265,41 @@ main {
   transition: transform 0.3s ease;
 }
 
-.main_content__block_article:hover .main_content__intro_image, .category_content__block_article:hover .category_content__intro_image{
+.main_content__block_article:hover .main_content__intro_image,
+.category_content__block_article:hover .category_content__intro_image {
   transform: scale(1.03);
 }
 
 /* Чтобы картинка не вылезала при масштабировании */
-.main_content__block_article, .category_content__block_article {
+.main_content__block_article,
+.category_content__block_article {
   position: relative;
 }
 
 /* Заголовок статьи */
-.main_content__block_article h2, .category_content__block_article h2 {
+.main_content__block_article h2,
+.category_content__block_article h2 {
   margin: 18px 20px 8px;
   font-size: 20px;
   line-height: 1.3;
   font-weight: 600;
 }
 
-.main_content__block_article h2 a, .category_content__block_article h2 a  {
+.main_content__block_article h2 a,
+.category_content__block_article h2 a {
   color: #222;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.main_content__block_article h2 a:hover, .category_content__block_article h2 a:hover {
+.main_content__block_article h2 a:hover,
+.category_content__block_article h2 a:hover {
   color: #666;
 }
 
 /* Описание */
-.main_content__intro_text, .category_content__intro_text {
+.main_content__intro_text,
+.category_content__intro_text {
   display: block;
   margin: 0 20px;
   font-size: 15px;
@@ -297,7 +308,9 @@ main {
 }
 
 /* Дата */
-.main_content__date, .category_content__date {
+.main_content__date,
+.category_content__date,
+.category_content__count_views {
   display: block;
   margin: auto 20px 18px;
   padding-top: 18px;
@@ -348,6 +361,82 @@ main {
   color: #a6a1a1;
   display: flex;
   justify-content: left;
+}
+
+.category_content__metadata {
+  display: inline-flex;
+  gap: 100px;
+}
+
+/* Пагинация */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.pagination__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #d8d8d8;
+    border-radius: 6px;
+    background: #fff;
+    color: #222;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.pagination__link:hover {
+    border-color: #222;
+    background: #222;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.pagination__link.is-active {
+    border-color: #222;
+    background: #222;
+    color: #fff;
+    cursor: default;
+}
+
+.pagination__link.is-active:hover {
+    transform: none;
+}
+
+.pagination__link--arrow {
+    padding: 0 16px;
+}
+
+@media (max-width: 600px) {
+    .pagination {
+        gap: 5px;
+        margin-top: 30px;
+    }
+
+    .pagination__link {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 9px;
+        font-size: 13px;
+    }
+
+    .pagination__link--arrow {
+        padding: 0 10px;
+    }
 }
 
 @media (max-width: 900px) {
