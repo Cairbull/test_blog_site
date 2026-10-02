@@ -1,8 +1,12 @@
 {extends file="layouts/main.tpl"}
-
 {block name="content"}
+
  <h2 class="category_content__header_class">{{$articles[0].category_name}}</h2>
+ <div class="category_content__toolbar">
  <label class="category_content__description_category">{{$articles[0].category_description}}</label>
+ <!-- Сортировка статей-->
+ {include file="components/sort.tpl"}
+ </div>
    <div class="category_content__container">
     {foreach $articles as $article}
         <div class="category_content__block_article">

@@ -22,19 +22,32 @@ class CategoryModel
         return (int) $query->fetchColumn();
     }
 
-    /* Получаем материалы отдельной категории в соответствии с установленным лимитом на одну страницу */
-    public function getAllArticles(string $alias, int $current_page, int $count_pages): array
+    /* Метод выполняет функцию получения параметра сортировки */
+    public function getOrderArticles(string $param_sort): string
+    {
+        return match ($param_sort) {
+            'date_asc' => 'a.publish_date ASC',
+            'views_desc' => 'a.views_counter DESC',
+            'views_asc' => 'a.views_counter ASC',
+            default => 'a.publish_date DESC',
+        };
+    }
+
+    /* Получаем материалы отдельной категории в соответствии с установленным лимитом на одну страницу и сортируем исходя из полученного значения */
+    public function getAllArticles(string $alias, int $current_page, int $count_pages, string $param_sort): array
     {
         $offset = ($current_page - 1) * $count_pages;
+        $order_value = $this->getOrderArticles($param_sort);
 
         $data = "SELECT a.name AS article_name, a.alias AS article_alias, a.description AS article_description, a.image, a.publish_date,a.views_counter, c.name AS category_name ,c.alias AS category_alias, c.description AS category_description
         FROM articles AS a INNER JOIN categories AS c ON a.category_id = c.id
         WHERE c.alias = :category_alias
-        ORDER BY a.publish_date DESC
+        ORDER BY {$order_value}
         LIMIT :limit OFFSET :offset";
 
         $query = $this->db->prepare($data);
 
+        // Для работы с пагинацией
         $query->bindValue(':category_alias', $alias, PDO::PARAM_STR);
         $query->bindValue(':limit', $count_pages, PDO::PARAM_INT);
         $query->bindValue(':offset', $offset, PDO::PARAM_INT);

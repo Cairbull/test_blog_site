@@ -355,7 +355,7 @@ main {
 /* Раздел категории */
 .category_content__description_category {
   position: relative;
-  margin: 16px 148px 0;
+  margin: 35px 148px 0;
   font-size: 17px;
   font-weight: 400;
   color: #a6a1a1;
@@ -365,78 +365,125 @@ main {
 
 .category_content__metadata {
   display: inline-flex;
-  gap: 100px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 /* Пагинация */
 .pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 40px;
-    padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+  padding: 20px 0;
 }
 
 .pagination__link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    height: 40px;
-    padding: 0 12px;
-    border: 1px solid #d8d8d8;
-    border-radius: 6px;
-    background: #fff;
-    color: #222;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  background: #fff;
+  color: #222;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .pagination__link:hover {
-    border-color: #222;
-    background: #222;
-    color: #fff;
-    transform: translateY(-2px);
+  border-color: #222;
+  background: #222;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .pagination__link.is-active {
-    border-color: #222;
-    background: #222;
-    color: #fff;
-    cursor: default;
+  border-color: #222;
+  background: #222;
+  color: #fff;
+  cursor: default;
 }
 
 .pagination__link.is-active:hover {
-    transform: none;
+  transform: none;
 }
 
 .pagination__link--arrow {
-    padding: 0 16px;
+  padding: 0 16px;
 }
 
 @media (max-width: 600px) {
-    .pagination {
-        gap: 5px;
-        margin-top: 30px;
-    }
+  .pagination {
+    gap: 5px;
+    margin-top: 30px;
+  }
 
-    .pagination__link {
-        min-width: 36px;
-        height: 36px;
-        padding: 0 9px;
-        font-size: 13px;
-    }
+  .pagination__link {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 9px;
+    font-size: 13px;
+  }
 
-    .pagination__link--arrow {
-        padding: 0 10px;
-    }
+  .pagination__link--arrow {
+    padding: 0 10px;
+  }
+}
+
+/* Сортировка статей */
+.category_content__toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.articles_sort {
+  margin-top: 28px;
+  margin-right: 146px;
+}
+
+.articles_sort__label {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.articles_sort__select {
+  min-width: 190px;
+  height: 42px;
+  padding: 0 38px 0 14px;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #222;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.articles_sort__select:hover {
+  border-color: #999;
+}
+
+.articles_sort__select:focus {
+  border-color: #222;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
 }
 
 @media (max-width: 900px) {
@@ -460,9 +507,6 @@ main {
     margin-top: 40px;
   }
 
-  .main_conten__intro_image {
-    height: 220px;
-  }
 }
 
 /* =========================

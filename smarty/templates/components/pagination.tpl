@@ -1,7 +1,6 @@
 {if $totalPages > 1}
 
     <nav class="pagination">
-
         {if $page > 1}
             <a
                 href="?page={$page - 1}"
