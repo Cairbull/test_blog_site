@@ -29,11 +29,17 @@ class Router
         return $param_sort;
     }
 
+    /* public function getTags():string{
+        $tags = isset($_GET['tags']) ? (string) $_GET['tags'] : '';
+        return $tags;
+    } */
+
     public function dispatch(): void
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $page = $this->getNumberPage();
         $param_sort = $this->getParamSort();
+        // $tags = $this->getTags();
 
         if ($uri === '/') {
             $this->homeController->index();
@@ -46,7 +52,7 @@ class Router
             return;
         }
 
-       else if (preg_match('#^\/article\/([a-z0-9-]+)\/([a-z0-9-]+)$#', $uri, $matches)) {
+       if (preg_match('#^\/article\/([a-z0-9-]+)\/([a-z0-9-]+)$#', $uri, $matches)) {
             $articleAlias = (string) $matches[2];
             $this->articleController->index($articleAlias);
             return;

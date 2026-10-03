@@ -7,7 +7,9 @@
         <div class="article_content__block_article">
             <img class="article_content__intro_image" src="/images/{$article.category_alias}/{$article.image}">
             <span class="article_content__full_text">{$article.article_text}</span>
-            <span class="article_content__category_name"><i>Категория:&nbsp;{$article.category_name}</i></span>
+             <div class="article_content__tags"><span class="article_content__label_field"><i>Теги:&nbsp;</i></span>
+                <span class="article_content__tag"><i>{$article.tags}&nbsp;</i></span></div>
+            <span class="article_content__category_name"><i>Категория:&nbsp;<a href="/categories/{$article.category_alias}">{$article.category_name}</a></i></span>
             <div class="article_content__metadata">
                 <span class="article_content__count_views"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
   <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
@@ -20,5 +22,5 @@
         </div>
     </div>
   {/foreach}
- <!-- {include file="components/similar_pages.tpl"} -->
+ {include file="components/similar_pages.tpl"}
 {/block}

@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Проверяем URL и подключаем метод, если страница связана с категориями */
   function checkURL() {
     const url = window.location.href;
-    const regex = /categories/g;
-    const found = url.match(regex);
-    if (found) {
+    const regexCategories = /categories/g;
+    const foundCategory = url.match(regexCategories);
+    if (foundCategory) {
       handlerSort();
     }
   }

@@ -19,7 +19,7 @@ class CategoryController
     public function countPages(string $alias): int
     {
         $count_elements = $this->category->getCountArticles($alias);
-        $perPage = $count_elements / 2;
+        $perPage = $count_elements / 3;
         return $perPage;
     }
 
@@ -32,9 +32,8 @@ class CategoryController
         $count_pages = $this->countPages($alias);
         $total_pages = (int) ceil($count_elements / $count_pages);
         $articles = $this->category->getAllArticles($alias, $current_page, $count_pages, $param_sort);
-      
         $this->view->render($category_page, [
-            'title' => $menu[0]['name'],
+            'title' => $articles[0]['category_name'],
             'menu' => $menu,
             'articles' => $articles,
             'page' => $current_page,

@@ -5,6 +5,7 @@
     <title>{$title}</title>
      <link rel="stylesheet" href="/css/main.css">
      <script src="/js/sort.js"></script>
+     <script src="/js/tags.js"></script>
 </head>
 <body>
 {include file="components/header.tpl"}
