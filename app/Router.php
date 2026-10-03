@@ -4,14 +4,16 @@ namespace App;
 
 use App\Controllers\HomeController;
 use App\Controllers\CategoryController;
+use App\Controllers\ArticleController;
 
 class Router
 {
     public function __construct(
         private HomeController $homeController,
-        private CategoryController $categoryController
+        private CategoryController $categoryController,
+        private ArticleController $articleController
     ) {}
-    
+
     public function getNumberPage(): int
     {
         $current_page = max(1, (int) ($_GET['page'] ?? 1));
@@ -37,10 +39,16 @@ class Router
             $this->homeController->index();
             return;
         }
+
         if (preg_match('#^\/categories\/([a-z0-9-]+)$#', $uri, $matches)) {
             $categoryAlias = (string) $matches[1];
-
             $this->categoryController->index($categoryAlias, $page, $param_sort);
+            return;
+        }
+
+       else if (preg_match('#^\/article\/([a-z0-9-]+)\/([a-z0-9-]+)$#', $uri, $matches)) {
+            $articleAlias = (string) $matches[2];
+            $this->articleController->index($articleAlias);
             return;
         }
 

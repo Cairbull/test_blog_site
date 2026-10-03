@@ -1,5 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    /* Обработчик событий параметров сортировки */
+  /* Проверяем URL и подключаем метод, если страница связана с категориями */
+  function checkURL() {
+    const url = window.location.href;
+    const regex = /categories/g;
+    const found = url.match(regex);
+    if (found) {
+      handlerSort();
+    }
+  }
+
+  /* Обработчик событий параметров сортировки */
   async function handlerSort() {
     const categoryContainer = document.querySelector(
       ".category_content__container",
@@ -10,10 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
     sortList.addEventListener("change", async (event) => {
       const value = event.currentTarget.value;
       const url = new URL(window.location.href);
-    //Передаем параметры sort и значение в URL 
+      //Передаем параметры sort и значение в URL
       url.searchParams.set("sort", value);
       history.pushState({}, "", url);
-     // Передаем ajax запрос контроллеру 
+      // Передаем ajax запрос контроллеру
       try {
         const response = await fetch(
           `${path}?sort=${encodeURIComponent(value)}`,
@@ -35,6 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (window.location.pathname != "/") {
-    handlerSort();
+    checkURL();
   }
 });

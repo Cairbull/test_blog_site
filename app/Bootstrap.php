@@ -8,8 +8,10 @@ use Dotenv\Dotenv;
 
 use App\Controllers\HomeController;
 use App\Controllers\CategoryController;
+use App\Controllers\ArticleController;
 use App\Models\CategoriesModel;
 use App\Models\CategoryModel;
+use App\Models\ArticleModel;
 use App\Views\View;
 
 class Bootstrap
@@ -19,6 +21,7 @@ class Bootstrap
         $this->loadEnvironment();
         $db = $this->createDatabase();
         $smarty = $this->createSmarty();
+        $article = new ArticleModel($db);
         $categories = new CategoriesModel($db);
         $category = new CategoryModel($db);
         $view = new View($smarty);
@@ -33,9 +36,16 @@ class Bootstrap
             $categories
         );
 
+        $articleController = new ArticleController(
+            $view,
+            $categories,
+            $article
+        );
+
         $router = new Router(
             $homeController,
-            $categoryController
+            $categoryController,
+            $articleController
         );
 
         $router->dispatch();

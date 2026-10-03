@@ -19,7 +19,7 @@ class CategoriesModel
     /* Получаем последние три материала определенных категорий */
     public function getLastArticles(int $id): array
     {
-        $data = "SELECT a.name AS article_name, a.alias AS article_alias, a.description, a.image, a.publish_date, c.name AS category_name ,c.alias AS category_alias 
+        $data = "SELECT a.name AS article_name, a.alias AS article_alias, a.description, a.image, a.publish_date,a.views_counter, c.name AS category_name ,c.alias AS category_alias 
         FROM articles AS a INNER JOIN categories AS c ON a.category_id = c.id 
         WHERE a.category_id = :category_id
         ORDER BY a.publish_date DESC

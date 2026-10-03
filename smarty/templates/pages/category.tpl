@@ -1,9 +1,9 @@
 {extends file="layouts/main.tpl"}
 {block name="content"}
 
- <h2 class="category_content__header_class">{{$articles[0].category_name}}</h2>
+ <h2 class="category_content__header_class">{$articles[0].category_name}</h2>
  <div class="category_content__toolbar">
- <label class="category_content__description_category">{{$articles[0].category_description}}</label>
+ <label class="category_content__description_category">{$articles[0].category_description}</label>
  <!-- Сортировка статей-->
  {include file="components/sort.tpl"}
  </div>
@@ -11,7 +11,7 @@
     {foreach $articles as $article}
         <div class="category_content__block_article">
             <img class="category_content__intro_image" src="/images/{$article.category_alias}/{$article.image}">
-            <h2><a href="/article/{$article.alias}">{$article.article_name}</a></h2>
+            <h2><a href="/article/{$articles[0].category_alias}/{$article.article_alias}">{$article.article_name}</a></h2>
             <span class="category_content__intro_text">{$article.article_description}</span>
             <div class="category_content__metadata">
                 <span class="category_content__count_views"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -20,7 +20,7 @@
 </svg>&nbsp;{$article.views_counter}</span>
                 <span class="category_content__date"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
   <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-</svg>&nbsp;{$article.publish_date}</span>
+</svg>&nbsp;{$article.publish_date|date_format:"%d.%m.%Y"}</span>
             </div>
         </div>
     {/foreach}
